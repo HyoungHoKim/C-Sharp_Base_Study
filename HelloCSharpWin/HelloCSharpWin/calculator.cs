@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace HelloCSharpWin
 {
+    public enum Operators { Add, Sub, Multi, Div }
+
     public partial class Calculator : Form
     {
 
         public int Result = 0;
         public bool isNewNum = true;
+        public Operators Opt = Operators.Add;
 
         public Calculator()
         {
@@ -41,12 +44,8 @@ namespace HelloCSharpWin
 
         private void NumButton1_Click(object sender, EventArgs e)
         {
-            SetNum("1");
-        }
-
-        private void NumButton2_Click(object sender, EventArgs e)
-        {
-            SetNum("2");
+            Button numButton = (Button)sender;
+            SetNum(numButton.Text);
         }
 
         public void SetNum(string num)
@@ -68,11 +67,34 @@ namespace HelloCSharpWin
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            int num = int.Parse(NumScreen.Text);
-            Result = Result + num;
+            if (isNewNum == false)
+            {
+                int num = int.Parse(NumScreen.Text);
 
-            NumScreen.Text = Result.ToString();
+                if (Opt == Operators.Add)
+                    Result = Add(Result, num);
+                else if (Opt == Operators.Sub)
+                    Result = Sub(Result, num);
+
+                NumScreen.Text = Result.ToString();
+                isNewNum = true;
+            }
+
+            Button optButton = (Button)sender;
+            if (optButton.Text == "+")
+                Opt = Operators.Add;
+            if (optButton.Text == "-")
+                Opt = Operators.Sub;
+
+        }
+
+        private void NumClear_Click(object sender, EventArgs e)
+        {
+            Result = 0;
             isNewNum = true;
+            Opt = Operators.Add;
+
+            NumScreen.Text = "0";
         }
     }
 }

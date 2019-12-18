@@ -1,7 +1,0 @@
-C# 2강 
-
-자료형 설명 
-자료형 변환 = Convert.ToInt32 or ToString 등등~
-함수 오버로딩 = 함수의 이름 뿐만 아니라 매개변수의 자료형으로도 구분한다. 
-String.IsNullOrWhiteSpace(변수) = 스트링 변수가 없거나 공백 문자열 일 때 bool 값 반환.
-int, int32.TryParse(int 매개변수, out 형변환 한 값을 받음) = int형으로 바꿀 수 있나 없나 판단.
