@@ -1,0 +1,68 @@
+partial : 클래스에 대한 정의가 여러 군데 나눠져 있는 것을 뜻함 
+: Form => 상속을 받은 것을 뜻함 
+클래스 앞에는 internal 이라는 키워드가 자동적으로 들어가는데(아무것도 없으면 자동적으로)
+이는 같은 namespace 안에서만 동작하는 것을 의미한다. 
+
+property (간단히 생각해서 class 내 변수라고 생각하면됨 C#에서는 property라 하는 듯)
+제한적이긴 함. get은 매개변수를 못받고, set은 매개변수를 하나 밖에 못받음
+ 
+선언
+public int Age
+        {
+            get { return _Age; }
+            set
+            {
+                this._Age = value; // value는 키워드 set 할 때 받는 값을 뜻한다.
+                this._IsQualified = value >= 18;
+            }
+        }
+
+// 아래와 같이 하면 get만 가능하고 set은 못하기 때문에
+// 값을 보호할 수 있다. 
+public bool IsQualified
+        {
+            get
+            {
+                return this._IsQualified;
+            }
+        }
+
+기능은 똑같지만 property와 메소드의 차이! (property가 훨씬 깔끔)
+public string FullName
+        {
+            get
+            {
+                return this.FirstName + " " + this.LastName;
+            }
+        }
+
+        public string GetFullName()
+        {
+            return this.FirstName + " " + this.LastName;
+        }
+
+// 이런 식으로도 사용 가능(Age를 주목)
+
+     public Customer(string firstName, string lastName, DateTime birthday)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this._Birthday = birthday;
+
+            this._IsQualified = Age >= 18;
+        }
+
+        public DateTime Birthday
+        {
+            get { return this._Birthday; }
+            set
+            {
+                this._Birthday = value;
+                this._IsQualified = Age >= 18;
+            }
+        }
+
+        public int Age
+        {
+            get { return DateTime.Now.Year - this._Birthday.Year; }
+        }
