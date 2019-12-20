@@ -42,6 +42,11 @@ namespace AnimalShelter
             CusPatInfo.Text = "";
             foreach(Pet pet in cus.MyPets)
             {
+                if(pet is Cat)
+                {
+                    (pet as Cat).Scratch();
+                }
+
                 CusPatInfo.Text += pet.Name + " : " + pet.MakeSound() + Environment.NewLine;
           
             }
