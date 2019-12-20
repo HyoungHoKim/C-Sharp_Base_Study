@@ -51,9 +51,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.CustNewFN = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.CustList = new System.Windows.Forms.ListBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.CustList = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CusPatInfo = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.CustDetailPanel.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustList)).BeginInit();
             this.SuspendLayout();
             // 
             // CreateCust
@@ -68,6 +76,8 @@
             // 
             // CustDetailPanel
             // 
+            this.CustDetailPanel.Controls.Add(this.CusPatInfo);
+            this.CustDetailPanel.Controls.Add(this.label12);
             this.CustDetailPanel.Controls.Add(this.CustIsQualified);
             this.CustDetailPanel.Controls.Add(this.label2);
             this.CustDetailPanel.Controls.Add(this.CustDetail);
@@ -78,9 +88,9 @@
             this.CustDetailPanel.Controls.Add(this.label4);
             this.CustDetailPanel.Controls.Add(this.CustFullName);
             this.CustDetailPanel.Controls.Add(this.label3);
-            this.CustDetailPanel.Location = new System.Drawing.Point(393, 33);
+            this.CustDetailPanel.Location = new System.Drawing.Point(671, 33);
             this.CustDetailPanel.Name = "CustDetailPanel";
-            this.CustDetailPanel.Size = new System.Drawing.Size(204, 387);
+            this.CustDetailPanel.Size = new System.Drawing.Size(198, 387);
             this.CustDetailPanel.TabIndex = 1;
             // 
             // CustIsQualified
@@ -186,9 +196,9 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.CustNewFN);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(98, 33);
+            this.panel1.Location = new System.Drawing.Point(395, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(289, 384);
+            this.panel1.Size = new System.Drawing.Size(280, 384);
             this.panel1.TabIndex = 2;
             // 
             // CustNewDesc
@@ -272,30 +282,84 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "성 : ";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.CustList);
+            this.panel2.Location = new System.Drawing.Point(13, 33);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(361, 384);
+            this.panel2.TabIndex = 3;
+            // 
             // CustList
             // 
-            this.CustList.FormattingEnabled = true;
-            this.CustList.ItemHeight = 15;
-            this.CustList.Location = new System.Drawing.Point(13, 33);
+            this.CustList.AllowUserToAddRows = false;
+            this.CustList.AllowUserToDeleteRows = false;
+            this.CustList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CustList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.CustList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CustList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.CustList.Location = new System.Drawing.Point(0, 0);
+            this.CustList.MultiSelect = false;
             this.CustList.Name = "CustList";
-            this.CustList.Size = new System.Drawing.Size(79, 394);
-            this.CustList.TabIndex = 3;
-            this.CustList.Click += new System.EventHandler(this.CustList_Click);
+            this.CustList.RowTemplate.Height = 27;
+            this.CustList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.CustList.Size = new System.Drawing.Size(361, 384);
+            this.CustList.TabIndex = 0;
+            this.CustList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustList_CellClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "이름";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "나이";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "입양가능";
+            this.Column3.Name = "Column3";
+            // 
+            // CusPatInfo
+            // 
+            this.CusPatInfo.AutoSize = true;
+            this.CusPatInfo.Location = new System.Drawing.Point(121, 156);
+            this.CusPatInfo.Name = "CusPatInfo";
+            this.CusPatInfo.Size = new System.Drawing.Size(45, 15);
+            this.CusPatInfo.TabIndex = 13;
+            this.CusPatInfo.Text = "label2";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(20, 156);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(37, 15);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "펫 : ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 450);
-            this.Controls.Add(this.CustList);
+            this.ClientSize = new System.Drawing.Size(881, 450);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.CustDetailPanel);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.CustDetailPanel.ResumeLayout(false);
             this.CustDetailPanel.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CustList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -325,7 +389,13 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox CustNewFN;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox CustList;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView CustList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Label CusPatInfo;
+        private System.Windows.Forms.Label label12;
     }
 }
 
