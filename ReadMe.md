@@ -1,6 +1,4 @@
-
 ##1강 
-
 운영체제와 닷넷 프레임 워크 
 닷넷 프레임워크 구성 요소
 => 클래스 라이브러리와 CLR(Common Lauguage Runtime)
