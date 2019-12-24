@@ -58,46 +58,46 @@ var : 대입되는 데이터에 따라 데이터형 결정
 1. null 값 초기화, 매개변수 사용 x
 2. var은 지역 변수로만 사용, 클래스 멤버로는 사용 x
 3. 연속적으로 초기화 하는 경우 :  var m = 10, n = 20; x
-##소수점 이하 자리수 출력 
+## 소수점 이하 자리수 출력 
 Console.WriteLine("{0} {1:f1} {2}", value1, value2, sum);
 {1: f1} f1 : float형의 소수점 첫째 짜리까지만 출력 : 2.1
         f2 : 2.12
-##nullable형 : null을 허용하지 않는 데이터형(기본 데이터형, int, float 등등 )이 null 값을 허용
+## nullable형 : null을 허용하지 않는 데이터형(기본 데이터형, int, float 등등 )이 null 값을 허용
 형식
 데이터? 변수병 : int? Var1; bool? Var2 = null; 
-##데이터 변환 
+## 데이터 변환 
 ToString()
 기본 데이터형.Parse()
 Convert.ToInt32()
 Convert.ToSingle()
 Convert.ToXXXXX()
 
-#7강 
-##박싱(boxing)
+# 7강 
+## 박싱(boxing)
 데이터형을 최상위 object 형으로 변환하여 힙에 저장(즉 참조 하는 형태가 x)
 별도의 메모리를 사용 
 int m = 123;
 object obj = m;
-##언박싱 : 힙에 저장된 형식을 다시 원래의 형식으로 변환 
+## 언박싱 : 힙에 저장된 형식을 다시 원래의 형식으로 변환 
 int n = (int)obj;
-##표준 입력 
+## 표준 입력 
 Console.ReadKey()
 사용자가 눌린 키 한 문자 정보를 리턴하는 메서드
-##함수 원형 
+## 함수 원형 
 public static ConsoleKeyInfo ReadKey()
 public static ConsoleKeyInfo ReadKey(bool ReadKey)
 => true : 화면 출력 안함, false : 화면 출력 
-##ConsoleKeyInfo.Key
+## ConsoleKeyInfo.Key
 ConsoleKey 열거형 값 => MSDN 참고 
 대소문자 구분 x => 해결 법 : ConsoleKeyInfo.KeyChar : 유니코드를 받음 
-##Console.ReadLine() : 엔터키가 눌려질 때까지 입력 받은 문자열을 리턴하는 메서드 
+## Console.ReadLine() : 엔터키가 눌려질 때까지 입력 받은 문자열을 리턴하는 메서드 
 
-#8강 
-##public struct 구조체명
+# 8강 
+## public struct 구조체명
 {
 // 멤버, 속성, 메서드 
 }
-##제한 사항
+## 제한 사항
 - 구조체에 선언된 const, static 변수만 초기화 가능 
 - 구조체 안에 선언할 수 있는 생성자는 매개변수가 반드시 있어야 함
 public struct MyStruct
@@ -115,17 +115,17 @@ public struct MyStruct
 - 구조체는 구조체 또는 클래스에 상속할 수 없음 (c++에서는 가능 )
 - 구조체는 인터페이스를 상속하여 메서드를 구현할 수 있음 
 
-##열거형 : 상수를 문자열로 대치하여 선언, 상수에 의미 부여 
-##형식 
+## 열거형 : 상수를 문자열로 대치하여 선언, 상수에 의미 부여 
+## 형식 
 enum 열거형 명칭 { 문자열1, 문자열2 };
 		{ 문자열1 = 상수, 문자열2 = 상수};
 		{ 문자열1 = 상수, 문자열2 };
 
 기본은 int형이지만 char 형을 제외한 형식 지정할 수 있음
 enum Days : byte { Sun = 0, Mone, Tue, Wed, Thu };
-##열거형 변수가 아닌 변수에 열거형 값을 대입할 때에는 데이터형을 명시할 것 
+## 열거형 변수가 아닌 변수에 열거형 값을 대입할 때에는 데이터형을 명시할 것 
 
-#9강 
+# 9강 
 값 형식 : 변수가 직접 값을 저장하는 형, 기본데이터형, 구조체, 열거형 
 선언(반드시 초기화 해야됨) vs 생성(new, 자동으로 기본값으로 초기화)
 
