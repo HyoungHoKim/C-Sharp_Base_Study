@@ -131,9 +131,36 @@ enum Days : byte { Sun = 0, Mone, Tue, Wed, Thu };
 
 참조 형식 : 한 객체를 참조형 변수가 사용할 때 참조형에 의해 내용이 바뀌면 객체에 영향을 줌
 class, interface, delegate, 배열, string 
-객체와 참조형 사이의 대입은 객체의 메모리 주소가 복사됨 
+객체와 참조형 사이의 대입은 객체의 메모리 주소가 복사됨
 
-
+# 10강 
+## 연산자 
+정수/부동 + "문자열" = "문자열"
+string str = 1 + "test" + 3.14f + "abcd" => 문자열
+## is 연산자(판단)
+형식 호환을 조사하는 연산자 
+형식 : '변수' is '클래스형 or 데이터형' = A is B => 결과는 true, false
+박싱/언박싱 변환, 참조 변환에서 사용 
+int nValue = 10;
+if(nValue is float)
+## as 연산자(변환)
+역할 
+형변환과 변환 조사 
+캐스트 연산자의 역할과 불변환은 null 리턴 
+참조, 박싱, 언박싱, null형에 사용 
+형식 : 결과형 = 참조형, 언박싱, 박싱 as 변환형 
+A test1 = new A();
+object obj1 = test1;
+B test2 = obj1 as B;
+if(test2 == null) Console.WriteLine("형변환 실패");
+else Console.WriteLine("형변환 성공");
+## null 병합 연산자 : ??
+null을 조사하는 연산자 : null이면 값을 넣고, 아니면 값을 유지
+C = A ?? B; (A가 기준)
+A가 null이 아니면 A를 C에 대입
+A가 null이면 B를 C에 대입 
+int? x = null;
+int y = x ?? -1; // y는 -1
 
 
 
