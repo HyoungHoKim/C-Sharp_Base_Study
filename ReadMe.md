@@ -162,6 +162,101 @@ A가 null이면 B를 C에 대입
 int? x = null;
 int y = x ?? -1; // y는 -1
 
+# 11강
+## foreach
+처음부터 끝까지 순차적인 값을 반복하여 읽는 역할 -> 읽기 전용 
+int[] Array1 = { 1, 2 .... , 10 };
+foreach(int nValue in Array1)
+{
+	Console.WriteLine(nValue);
+} 
+## 예외 처리 
+try
+{
+	// 예외가 발생할 수 있는 코드 
+}catch(예외처리 객체 e)
+{
+	//예외 처리 
+}
+try 문 안에서 초기화한 변수는 try 문 밖에서 사용할 수 없다. 
+try ~ finally 
+finally : 예외 발생과 상관없이 항상 실행되는 구문 
+다중 예외 처리 : catch를 여러개 연달아 붙이면 됨
+throw : 예외 상황을 임의로 발생시키는 역할
+
+# 12강
+## 1차원 배열 
+기본 개념 : 같은 데이터형 + 변수명 + 순차적인 메모리 나열 
+참조형 : new를 통해 생성 
+Array로부터 파생된 참조형 
+foreach 사용 가능 
+선언 형식 : 데이터형[] 배열명; int[] array_name;
+## 다차원 배열 
+콤마로 구분 
+선언형식 : int[,] array1 = new int[2, 2](2차원 배열) int[,,] array2 = new int[2, 3, 2](3차원 배열)
+array1[0, 1] = 2;
+
+
+# 13강
+가변 배열 : 데이터명[][] 배열명; int[][] array_name;
+ex) int[][] array = new int[3][];
+     array[0] = new int[2];
+     array[1] = new int[3];
+     array[2] = new int[4];
+
+배열 함수로 전달 
+void func(int[] arr) { } (1차원 배열)
+void func(int[, ] arr) { } (2차원 배열)
+
+# 14강 
+## 배열 초기화 메서드 
+public static void Clear(Array array, int index, int length) index부터 length에 해당하는 
+범위를 0으로 초기화 
+##배열을 복사 
+public object Clone(); int[] nCloneArray = (int[])nArray1.Clone();
+
+# 15강
+## 파일 입출력 
+### 스트림(stream)
+파일, 네트워크 등에서 데이터를 바이트 단위로 읽고 쓰는 클래스
+Stream class는 상위 기본 클래스임 
+using System.IO 선언 
+### File Stream
+파일 입출력을 다루는 기본 클래스 
+byte[] 배열로 데이터를 읽거나 저장함 => 형변환이 요구됨 
+파일 정보 설정에 사용 
+public FileStream( string path, FileMode mode, FileAccess access)
+텍스트 파일의 특징 : 기본단위 = 1바이트, 아스키 코드 기반, 아스키코드를 유니코드로 인코딩 
+static void Main(string[] args)
+{
+	FileStream fs = new FileStream("text.txt", FileMode.Create);
+	StreamWriter sw = new StreamWriter(fs);
+	sw.Close();
+}
+or
+using(Stream Writer sw = new StreamWriter(new FileStream("text.txt", FileMode.Create))
+{
+	//파일 입출력 처리  
+} // 자동으로 Close 해줌, 세련되보이니까 자주 쓰자 
+쓰기 메서드 Write, WriteLine을 통해 씀 sw.Write(value);
+읽기 메서드 Read(), ReadLine(), string ReadLine()
+
+#16강 
+## string 데이터 분리 
+public string[] Split( Params char[] separator )
+string.Split(new char[] { ' ' }); 
+using (BinaryReader br = new BinaryReader(File.Open("test.dat, FileMode.Open))
+{
+	var1 = br.ReadInt32();
+	var2 = br.ReadSingle();
+	str1 = br.ReadString();
+}
+
+
+
+
+
+ 
 
 
 
