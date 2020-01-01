@@ -252,11 +252,52 @@ using (BinaryReader br = new BinaryReader(File.Open("test.dat, FileMode.Open))
 	str1 = br.ReadString();
 }
 
+# 17강
+## serialize(직렬화)
+기본데이터형 뿐만 아니라 구조체나 클래스도 읽고 쓸수 있음 
+using System.Runtime.Serialization.Formatters.Binary;
+직렬화 대상 설정 
+[Serializable]
+struct A or Class A
+{
+
+}
+
+public void Serialize(Stream serializationStream, object graph) //쓰기
+public object Deserialize(Stream serializationStream)//읽기
+
+using(FileStream fs1 = new FileStream("test.dat", FileMode.Create))
+{
+	BinaryFormatter bf = new BinaryFormatter();
+	bf.Serialize(fs1, Data); // 컬렉션도 사용 방법은 같다. Data 대신 DataList
+}
+
+using(FileStream fs2 = new FileStream("test.dat", FileMode.Open))
+{
+	BinaryFormatter bf2 = new BinaryFormatter();
+	ResultList = (List<data>)bf2.Deserialize(fs2);
+}
 
 
+## 역직렬화
+직렬화 대상에서 제외
+[Serializable]
+class TestClass
+{
+	int nValue;
+	[NonSerialize] // 밑으로 모두 역직렬화
+	string strMessage;
+	// 또는 [NonSerialize] string strMessage;
+}
+제네릭 = 템플릿
 
+# 18강 프로젝트 
+필수 클래스와 메서드 
+1. 화면 출력 클래스 : Console
+   화면 출력 메서드 : Console.Beep(), Console.Clear(), Console.SetCursorPosition,
+		Console.SetWindowSize(), Thread.Sleep();
+   콘솔 색상 관련 속성 : Console.BackgroundColor, Console.ForgroundColor
 
- 
 
 
 
