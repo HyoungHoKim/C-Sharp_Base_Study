@@ -291,16 +291,231 @@ class TestClass
 }
 제네릭 = 템플릿
 
-# 18강 프로젝트 
+# 18~20강 프로젝트 
 필수 클래스와 메서드 
 1. 화면 출력 클래스 : Console
    화면 출력 메서드 : Console.Beep(), Console.Clear(), Console.SetCursorPosition,
 		Console.SetWindowSize(), Thread.Sleep();
    콘솔 색상 관련 속성 : Console.BackgroundColor, Console.ForgroundColor
 
+# 21강 
+## 클래스 
+변수와 메서드를 그룹화한 것 
+### 주요개념 
+- 그룹화를 위해 class 키워드와 형식 사용
+- new 연산자로 생성하여 사용
+- new를 사용하지 않으면 같은 클래스를 참조할 수 있는 변수가 됨 (클래스 참조 변수)
+- 클래스를 new를 통해 생성하면 객체가 됨 
+- 인스턴스와 객체의 관계 :  인스턴스는 본질, 객체는 실물인 현상 A test1 (object) = new A(); (instatnce)
+   "같은 A 인스턴스를 가지는 test1과 test2 객체"
+### 형식 
+- 클래스 형식과 구조체 형식은 유사 
+struct struct_name    class class_name
+{                           {
 
+}                           }
+xxx.멤버 변수, xxx.멤버 메서드 
 
+구조체 선언은 값형, 클래스 선언은 참조형 
 
+형식
+class Date 
+{
+	int Year, Month, Day;
+	void Print()
+	{
+		Console.WriteLine("{0} {1} {2}", Year, Month, Day);
+	}
+}
 
+### 접근 한정자 
+- 없으면 자동적으로 private 
+- 클래스 멤버에 대한 접근 권한 설정
+- 접근 한정자 : private, protected, public, internal(C#에서 추가된 개념), protected internal
+- 클래스 자체에 적용하는 접근 한정자 
+  public -> 명시적
+  internal -> 암시적 
+#### public 
+- 클래스 내외부에서 모두 접근 가능 
+- 상속관계에서도 위와 동일하게 접근 가능 
+#### private 
+- 클래스 또는 구조체 안에서만 멤버에 접근
+- 클래스 외부에서는 사용 안됨 
+#### protected
+- 클래스 안에서는 private와 같은 역할 
+- 하위 클래스 안에서는 상위 protected 멤버 접근 가능
+#### internal 
+- 같은 어셈블리(exe, dll, 같은 프로젝트) 안에 있을 때만 내외부에서 멤버에 접근 가능
+- 클래서 서두에 접근 한정자 생략은 internal 생략한 것 
+#### protected internal 
+- 같은 어셈블리 안에서는 internal과 동일 
+- 서로 다른 어셈블리 안에서 상속관계일 때 하위 클래스는 상위 클래스의 protected internal 멤버에 
+접근할 수 있음, 외부에서 접근할 수 없음  
+ 
+# 22강 
+## 객체 생성 
+- new로 생성 
+- 객체 해제는 가비지 컬렉터에게 
 
+## 생성자 Constructor
+- 객체를 생성할 대 자동으로 호출되는 메서드 
+- new
+- 기본 생성자 : 클래스명과 같은 이름, 리턴형이 없음, 접근 한정자는 public 
+- 생성자 : 매개변수가 있음, 리턴형은 없음, 접근 한정자는 public 
+## 소멸자 Destructor
+- 객체가 소멸될 때 호출되는 메서드 
+- 가비지 컬렉터 
+- 클래스명과 같음
+- 리턴형 없음 
+- 접근 한정자 없음 
+- ~로 시작함 
+~MyClass()
+{
+
+}
+
+## 정적 멤버
+### 언어에 따른 static 역할 비교
+- C :  변수 값 유지 
+- C++ : 객체 안에서 변수 공유 
+- C# : 객체를 생성하지 않고 멤버 사용, MyClass.Print();
+
+## 클래스 참조 
+- 선언한 클래스 -> 참조형 클래스 변수 
+- new 생성한 클래서 -> 객체 
+
+## this
+- this는 객체 자신을 참조하는 키워드 : this.member
+- 메소드의 매개변수와 멤버 변수명이 같을 때 this.number = number
+
+# 23강 
+## Property 속성  
+- 역할 : 클래스 안의 멤버변수에 값 읽기 또는 저장 
+- private로 선언된 멤버 변수 
+- keyword : get, set, value, return 
+ex) 
+class A 
+{
+	private string name;
+	private int number;
+
+	public int Name 
+	{
+		get { return count; }
+		set { count = value; }
+	}
+	
+	//이런식으로 가려서 받을 수도 있다.  
+	public int Number
+	{
+		get { return number; }
+		set
+		{
+			if( value <  0 || value > 9) number = 0;
+			else number = value;
+		}
+	}
+}
+
+A test = new A();
+test.Name = "Microsoft C#";
+Console.WriteLine("{0}", test.Name);
+
+# 24강 
+## 인덱서 indexer 
+- 클래스 내의 배열 도는 컬렉션을 외부에서 접근할 수 있도록 하는 역할 
+- 키워드 : 속성 형식 + 배열 형식 (get, set, return, value + this[int index])
+- 사용 방법 : 배열과 같이 사용, 객체명[인덱스] = 값 또는 변수;
+ex)
+class A
+{
+	private int[] number = new int[5];
+	public int this[int index]
+	{
+		get { return number[index]; }
+		set { number[index] = value; }
+	}
+}
+
+A test = new A();
+
+test[i] = i;
+Console.WritteLine(test[i]);
+
+# 25강 
+
+# 26강 
+## 델리게이트 delegate
+- 메서드 참조형이다. 
+- 복수 또는 단일 메서드를 대신하여 호출하는 역할 -> 같은 형식이여야 한다.
+- 메서드만 호출 가능
+- 외부에서 호출가능(private, protected 메서드는 호출 불가)
+- delegate int DelegateType(string Name)
+### 델리게이트 생성 
+- DelegateType DelegateMethod = new DelegateType( Function );
+- DelegateType DelegateMethod = Fuction;
+### 멀티캐스트 델리게이트 
+- 다수 또는 단일 메서드 호출 
+- +=, -= 호출할 메서드를 포함 또는 제거 
+
+delegate void DelegateType();
+
+class A
+{
+	public void PrintA()
+	{
+		Console.WriteLine("PrintA");
+	}
+
+	public void PrintB()
+	{
+		Console.WriteLine("PrintB");
+	}
+}
+
+class Program
+{
+	static void Main(string[] args)
+	{
+		A Test = new A();
+		DelegateType DelFunc = Test.PrintA();
+		DelFunc += Test.PrinatB();
+		DelFunc -= Test.PrintA();
+		DelFunc();
+	}
+}
+
+## event 
+- 이벤트를 발생시키는 클래스 -> 게시자 
+- 이벤트를 받거나 처리하는 클래스 -> 구독자
+- 델리게이트를 기반으로 한다. (메서드 호출)
+- 이벤트는 메서드 안에서만 사용 가능  
+- delegate void DelegateType(string message)
+   class A
+   {
+	public event DelegateType EventHandler;
+	public void Func(string Message)
+	{
+		EventHandler(Message);
+	}
+   }
+
+   Test1.EventHandler += Test2.PrintA;
+   Test1.Func("Hi~~!");
+
+### 이벤트의 핵심
+- 이벤트 핸들러에 객체 메서드를 연결
+- 이벤트 핸들러는 객체 메서드에서 호출
+- 이벤트 핸들러를 포함하여 객체 안에 메서드를 통해 다른 객체 또는 같은 객체의 
+메서드를 호출하기 위한 방법 (같은 데이터 전달)
+
+## 델리게이트와 이벤트
+### 공통점
+- 객체의 메서드를 호출 
+### 차이점 
+- 델리게이트 : 델리게이트로 호출, 델리게이트에 연결
+- 이벤트 : 이벤트를 포함한 메서드에서 호출, 이벤트 핸들러 연결
+
+# 27강
+## 상속 
 
