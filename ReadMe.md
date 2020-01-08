@@ -518,4 +518,137 @@ class Program
 
 # 27강
 ## 상속 
+- 클래스를 상속
+- 클래스의 재사용 -> 코드량 줄이기
+### 상속 클래스의 역할 
+- 부모 클래스 : 상속을 하는 클래스 (base class, parent class, 상위 클래스)
+- 자식 클래스 : 상속을 받는 클래스 (children class, derived class, 파생 클래스)
+class B : A -> A를 상속 받는 B 클래스 
+{
+}
+- 생성자 호출 : 상위 -> 하위
+- 소멸자 호출 : 하위 -> 상위
+### base 키워드 
+- 상위 클래스의 생성자 또는 멤버 변수 및 메서드 호출
+- 멤버 이름의 중복
+- 하위에서 상위 설정 등 (생성자 위주)
+public B(int num):base(num)
+{
+}
+Console.WriteLine("{0} {1}", base.name, name);
+### sealed 
+- 상속 불가에 대한 명시 (멤버 변수, 메서드)
+sealed class A
+{
+}
+or
+sealed public void Print()
+
+# 28강 
+## override 오버라이드 
+- 상위 메서드를 무시하고 하위에서 재정의 하는 것
+- override의 대상 -> 클래스 메서드 (속성, 인덱서, 이벤트)
+- 형식 : 상위 클래스에는 virtual 명시, 하위 클래스에는 override 명시 
+- 당연히 public 
+## overload 오버로드 
+- 하나의 메서드명에 다양한 매개변수 적용
+- 하나의 메서드로 다양한 값을 대입 
+- 메서드명만 동일, 매개변수는 임의로 적용, 메서드명과 매개변수로 호출 
+## 추상 클래스 abstract class
+- 구현하려는 메서드의 형태만 존재하는 클래스
+- 추상 클래스는 구현 형태만 제공, 실제 구현은 하위에서 구현
+### 제한 사항 
+- 추상클래스는 상속으로만 사용
+- new를 통해 생성할 수 없다.
+- abstract가 있는 상위 메서드만 하위에서 모두 구현 
+### 형식 
+abstract class A
+{
+	public abstract void Print();
+	........
+}
+
+class B : A
+{
+	// 반드시 구현해야됨 
+	 public override void Print()
+	{
+		구현...
+
+### 용도
+- 제공되는 형식으로 메서드를 구성해야되는 경우
+
+## 다형성 polymorphism
+- cast 형을 이용한 참조 
+A test2 = new B();
+A test3 = (A)Test2;
+### 박싱 
+- 값 형식을 object 형 변환 (int, double, float)
+int a = 7;
+object obj = a;
+int result = (int)obj;
+- 구조제도 값 형식이라 박싱 가능
+### 언박싱
+- object 형을 다시 값 형식으로 변환
+- cast를 사용하여 형을 명시
+
+클래스는 상속 관계에 있으므로 참조변환이 된다. (Upcasting, Downcasting)
+-> 박싱과 언박싱과 구별 
+
+# 29강 
+## 인터페이스 interface
+- 상속관계에 있어야만 하고, 구현은 하위에서 한다. 
+- 인터페이스는 구현없이 형식만 포함 
+- 다중 상속 가능
+- 상속으로만 사용하고 생성은 불가
+- 이벤트, 인덱서, 메서드, 속성을 포함
+- 기본 권한은 public이다.
+- 관례적으로 대문자 I를 인터페이스명에 붙임
+interface IA
+{
+	void Print();
+}
+
+class B : IA
+{
+	public void Print()
+	{
+		console.WriteLine("Hello World");
+	}
+}
+
+interface IA
+{
+	void Print();
+}
+
+interface IB
+{
+	void Print();
+}
+
+class C : IA, IB
+{
+	public void PrintA(){ ......
+	public void PrintB(){ .........
+}
+
+# 30강 
+## 윈도우 프로그래밍 
+- Program.cs : 윈폼 생성과 실행
+- Form.cs : 폼 프로그래밍
+- Form.Designer.cs : 자동 생성 코드 (이벤트 처리, 컨트롤 속성 등...)
+### partial 
+- 클래스나 구조체, 인터페이스, 메서드의 정의를 둘 이상의 소스 파일로 분할
+- 규모가 큰 프로젝트일 때 하나의 파일에 다수가 접근할 때 사용
+
+# 31강 
+## 이벤트 
+- 개념 : delegate(외부에서)의 확장, event(객체의 메서드 안에서)
+- 윈도우 메시지에 따라 호출되는 이벤트 결정 -> 자동생성&호출
+private 
+- sender : 이벤트를 호출하는 객체 참조
+- e 이벤트에 관련된 정보를 제공하는 클래스 
+
+
 
